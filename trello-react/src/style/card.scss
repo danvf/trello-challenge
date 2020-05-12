@@ -1,0 +1,23 @@
+@import "font";
+
+.card-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    min-height: 100px;
+    margin: 10px;
+    padding: 10px 16px;
+    border-radius: 3px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+
+    .card-text {
+        @extend %card-font;
+    }
+
+    .card-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
