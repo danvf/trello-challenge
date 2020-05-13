@@ -1,16 +1,24 @@
 import React from "react";
-import Search from "./Search";
+import data from "../data/data.json";
 import Board from "./Board";
-import "../style/font.scss";
+import { connect } from "react-redux";
+import "../style/app.scss";
 
-function App() {
-    return (
-        <div>
-            <span> TODO: Import title from JSON </span>
-            <Search />
-            <Board />
-        </div>
-    );
+class App extends React.Component {
+    render() {
+        const { board } = this.props;
+
+        return (
+            <div className="app">
+                <button onClick={() => this.doTest()}>debug</button>
+                <Board title={board.title} columns={board.columns} />
+            </div>
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+    board: state.board,
+});
+
+export default connect(mapStateToProps)(App);

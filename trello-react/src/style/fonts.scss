@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+@import "colors";
+
+$bold: 700;
+$medium: 500;
+$regular: 400;
+$light: 300;
+
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+%board-font {
+    color: $board-title;
+    font-size: 25px;
+    font-weight: $medium;
+}
+
+%column-font {
+    text-transform: uppercase;
+    color: $column-title;
+    font-size: 17px;
+    font-weight: $regular;
+}
+
+%card-font {
+    font-size: 13px;
+    font-weight: $regular;
+    color: $card-text;
+    margin: 5px 0px;
+}
