@@ -3,17 +3,22 @@ import Search from "./Search";
 import Column from "./Column";
 import "../style/board.scss";
 
-function Board(props) {
-    return (
-        <div>
-            <p className="board-title"> {props.title} </p>
-            <Search />
-            <div className="board-columns">
-                <Column />
-                <Column />
+class Board extends React.Component {
+    render() {
+        const columns = this.props.columns;
+
+        return (
+            <div>
+                <p className="board-title"> {this.props.title} </p>
+                <Search />
+                <div className="board-columns">
+                    {columns.map((column) => (
+                        <Column title={column.title} cards={column.cards} />
+                    ))}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default Board;

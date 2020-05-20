@@ -35,10 +35,12 @@ class Column extends React.Component {
     }
 
     render() {
+        const cards = this.props.cards;
+
         return (
             <div className="column-box">
                 <div className="column-header">
-                    <span className="column-title">TODO: Title from JSON</span>
+                    <span className="column-title">{this.props.title}</span>
                     <div ref={this.container}>
                         <button
                             className="drop-btn"
@@ -56,7 +58,13 @@ class Column extends React.Component {
                     </div>
                 </div>
                 <div className="column-body">
-                    <Card />
+                    {cards.map((card) => (
+                        <Card
+                            text={card.title}
+                            tags={card.title}
+                            members={card.members}
+                        />
+                    ))}
                 </div>
             </div>
         );
