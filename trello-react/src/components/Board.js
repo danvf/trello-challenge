@@ -2,6 +2,7 @@ import React from "react";
 import Search from "./Search";
 import Column from "./Column";
 import "../style/board.scss";
+import AddColumnButton from "./AddColumnButton";
 
 class Board extends React.Component {
     render() {
@@ -13,8 +14,14 @@ class Board extends React.Component {
                 <Search />
                 <div className="board-columns">
                     {columns.map((column) => (
-                        <Column title={column.title} cards={column.cards} />
+                        <Column
+                            key={column.id}
+                            id={column.id}
+                            title={column.title}
+                            cards={column.cards}
+                        />
                     ))}
+                    <AddColumnButton />
                 </div>
             </div>
         );

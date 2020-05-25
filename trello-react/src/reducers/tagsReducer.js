@@ -1,10 +1,10 @@
 import data from "../data/data.json";
 
-const boardContent = (state = data.boards[0], action) => {
+const tagsReducer = (state = data.tags, action) => {
     switch (action.type) {
         default:
             return state;
     }
 };
 
-export default boardContent;
+export default tagsReducer;

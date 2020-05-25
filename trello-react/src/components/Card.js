@@ -3,15 +3,27 @@ import "../style/card.scss";
 
 class Card extends React.Component {
     render() {
-        const members = this.props.members;
-        const tags = this.props.tags;
-
         return (
             <div className="card-box">
                 <p className="card-text"> {this.props.text} </p>
                 <div className="card-footer">
-                    <span>img</span>
-                    <span>tag</span>
+                    {this.props.extras}
+                    <div className="card-tags">
+                        {typeof this.props.tags !== "undefined" &&
+                            this.props.tags.map((tag) => (
+                                <button className="card-tag"> {tag} </button>
+                            ))}
+                    </div>
+                    <div className="card-members">
+                        {typeof this.props.members !== "undefined" &&
+                            this.props.members.map((member) => (
+                                <img
+                                    className="member-img"
+                                    alt="card member"
+                                    src={member.photoURL}
+                                />
+                            ))}
+                    </div>
                 </div>
             </div>
         );

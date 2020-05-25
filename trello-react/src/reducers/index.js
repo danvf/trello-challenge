@@ -1,6 +1,10 @@
 import { combineReducers } from "redux";
-import boardContent from "./boardContent";
+import boardReducer from "./boardReducer";
+import membersReducer from "./membersReducer";
+import tagsReducer from "./tagsReducer";
 
 export default combineReducers({
-    board: boardContent,
+    board: boardReducer,
+    people: membersReducer,
+    tags: tagsReducer,
 });
