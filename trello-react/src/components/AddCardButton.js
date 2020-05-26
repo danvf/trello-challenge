@@ -146,8 +146,16 @@ class AddCardButton extends Component {
 
     renderAddButton = () => {
         const { people, tags } = this.props;
+        const {
+            newCardFormOpen,
+            newCardText,
+            newCardTags,
+            newCardMembers,
+            selectPeopleOpen,
+            selectTagsOpen,
+        } = this.state;
 
-        if (this.state.newCardFormOpen) {
+        if (newCardFormOpen) {
             return (
                 <div ref={this.cardTextForm}>
                     <Card
@@ -156,7 +164,7 @@ class AddCardButton extends Component {
                                 autoFocus
                                 placeholder="Insira aqui o texto do cartão..."
                                 className="new-card-text"
-                                value={this.state.newCardText}
+                                value={newCardText}
                                 onChange={this.handleTextChange}
                             />
                         }
@@ -167,7 +175,7 @@ class AddCardButton extends Component {
                                     ref={this.cardTagsForm}
                                 >
                                     <button className="item-counter">
-                                        {this.state.newCardTags.length}
+                                        {newCardTags.length}
                                     </button>
                                     <button
                                         id="tagBtn"
@@ -176,7 +184,7 @@ class AddCardButton extends Component {
                                     >
                                         <i className="fas fa-tags" />
                                     </button>
-                                    {this.state.selectTagsOpen && (
+                                    {selectTagsOpen && (
                                         <div className="select-content">
                                             <div className="items-available">
                                                 {tags.map((tag) => (
@@ -189,7 +197,7 @@ class AddCardButton extends Component {
                                                         }
                                                         className={
                                                             "card-tag" +
-                                                            (this.state.newCardTags.includes(
+                                                            (newCardTags.includes(
                                                                 tag
                                                             )
                                                                 ? " active-item"
@@ -209,7 +217,7 @@ class AddCardButton extends Component {
                                     ref={this.cardPeopleForm}
                                 >
                                     <button className="item-counter">
-                                        {this.state.newCardMembers.length}
+                                        {newCardMembers.length}
                                     </button>
                                     <button
                                         id="peopleBtn"
@@ -219,7 +227,7 @@ class AddCardButton extends Component {
                                     >
                                         <i className="fas fa-user-plus" />
                                     </button>
-                                    {this.state.selectPeopleOpen && (
+                                    {selectPeopleOpen && (
                                         <div className="select-content">
                                             <div className="items-available">
                                                 {people.map((member) => (
@@ -232,7 +240,7 @@ class AddCardButton extends Component {
                                                         }
                                                         className={
                                                             "member-img" +
-                                                            (this.state.newCardMembers.includes(
+                                                            (newCardMembers.includes(
                                                                 member
                                                             )
                                                                 ? " active-item"

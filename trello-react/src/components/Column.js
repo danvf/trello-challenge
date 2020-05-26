@@ -2,6 +2,8 @@ import React from "react";
 import Card from "./Card";
 import AddCardButton from "./AddCardButton";
 import "../style/column.scss";
+import { connect } from "react-redux";
+import { removeColumn } from "../actions";
 
 class Column extends React.Component {
     constructor(props) {
@@ -36,35 +38,36 @@ class Column extends React.Component {
         this.setState({ dropdownOpen: !this.state.dropdownOpen });
     }
 
-    renderColumnHeader = () => {
-        if (this.props.newColumn) {
-            return;
-        } else {
-            return (
-                <button
-                    className="drop-btn"
-                    onClick={() => this.dropdownClick()}
-                >
-                    <i className="fas fa-ellipsis-v"> </i>
-                </button>
-            );
-        }
+    handleRemoveColumn = () => {
+        const { dispatch, id } = this.props;
+        dispatch(removeColumn(id));
+        return;
     };
 
     render() {
-        const cards = this.props.cards;
+        const { cards } = this.props;
 
         return (
             <div className="column-box">
                 <div className="column-header">
                     <span className="column-title">{this.props.title}</span>
                     <div ref={this.container}>
-                        {this.renderColumnHeader}
+                        {this.props.newCol === false && (
+                            <button
+                                className="drop-btn"
+                                onClick={() => this.dropdownClick()}
+                            >
+                                <i className="fas fa-ellipsis-v"> </i>
+                            </button>
+                        )}
                         {this.state.dropdownOpen && (
                             <div className="drop-btn-content">
                                 <li> Renomear </li>
                                 <hr />
-                                <li> Excluir </li>
+                                <li onClick={this.handleRemoveColumn}>
+                                    {" "}
+                                    Excluir{" "}
+                                </li>
                             </div>
                         )}
                     </div>
@@ -79,7 +82,7 @@ class Column extends React.Component {
                             members={card.members}
                         />
                     ))}
-                    {this.state.firstColumn && (
+                    {this.props.newCol === false && (
                         <AddCardButton columnID={this.props.id} />
                     )}
                 </div>
@@ -88,4 +91,4 @@ class Column extends React.Component {
     }
 }
 
-export default Column;
+export default connect()(Column);
