@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import Column from "./Column";
-import TextareaAutosize from "react-autosize-textarea";
-import { connect } from "react-redux";
-import { addColumn } from "../actions";
+import NewColumn from "./NewColumn";
 import "../style/addcolumn.scss";
 
 class AddColumnButton extends Component {
@@ -11,7 +8,6 @@ class AddColumnButton extends Component {
 
         this.state = {
             newColumnFormOpen: false,
-            newColumnTitle: "",
         };
     }
 
@@ -47,63 +43,13 @@ class AddColumnButton extends Component {
         });
     };
 
-    handleTextChange = (event) => {
-        this.setState({
-            newColumnTitle: event.target.value,
-        });
-    };
-
-    handleAddColumn = () => {
-        const { dispatch } = this.props;
-        const { newColumnTitle } = this.state;
-
-        if (newColumnTitle) {
-            dispatch(addColumn(newColumnTitle));
-        }
-
-        this.setState({
-            newColumnTitle: "",
-            newColumnFormOpen: false,
-        });
-
-        return;
-    };
-
     renderAddButton = () => {
-        const { newColumnFormOpen, newColumnTitle } = this.state;
+        const { newColumnFormOpen } = this.state;
 
         if (newColumnFormOpen) {
             return (
                 <div ref={this.columnTitleForm}>
-                    <Column
-                        title={
-                            <div className="new-column-header">
-                                <TextareaAutosize
-                                    autoFocus
-                                    placeholder="Insira o título da coluna..."
-                                    className="new-column-text"
-                                    value={newColumnTitle}
-                                    onChange={this.handleTextChange}
-                                />
-                            </div>
-                        }
-                        cards={[]}
-                        inactivateOptions={true}
-                    />
-                    <div className="new-column-actions">
-                        <button
-                            onClick={this.handleAddColumn}
-                            className="confirm-new-column"
-                        >
-                            Adicionar
-                        </button>
-                        <button
-                            onClick={this.closeColumnForm}
-                            className="cancel-new-column"
-                        >
-                            <i className="fas fa-times"></i>
-                        </button>
-                    </div>
+                    <NewColumn cancel={this.closeColumnForm} />
                 </div>
             );
         } else {
@@ -123,4 +69,4 @@ class AddColumnButton extends Component {
     }
 }
 
-export default connect()(AddColumnButton);
+export default AddColumnButton;

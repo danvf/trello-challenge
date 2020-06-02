@@ -1,0 +1,147 @@
+@import "colors";
+@import "fonts";
+
+.new-card-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: $card-box;
+    min-height: 112px;
+    margin: 10px 0px;
+    padding: 10px 16px;
+    border-radius: 3px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+
+    .new-card-text {
+        width: 100%;
+        border: none;
+        outline: none;
+        resize: none;
+        overflow: visible;
+        @extend %card-font;
+    }
+
+    .new-card-extras {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .chosen-items {
+            display: flex;
+            align-items: center;
+
+            .item-counter {
+                border: none;
+                outline: none;
+                border-radius: 100%;
+                font-size: 16px;
+                text-align: center;
+                color: $add-card-btn-text;
+            }
+
+            .add-extra {
+                background-color: $transparent;
+                color: $add-card-btn-text;
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+                outline: none;
+                border: none;
+
+                i {
+                    pointer-events: none;
+                }
+            }
+
+            .add-extra:hover {
+                cursor: pointer;
+                color: darken($add-card-btn-text, 4);
+            }
+
+            .select-content {
+                position: absolute;
+                transform: translate(58px, 0px);
+                background-color: $white;
+                border-radius: 6px;
+                width: 144px;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+
+                .items-available {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+
+                    .card-tag {
+                        margin: 6px;
+                        font-size: 12px;
+                        background-color: $card-tag-bg;
+                        color: $card-tag-text;
+                        border: none;
+                        border-radius: 2px;
+                        outline: none;
+                    }
+
+                    .card-tag:hover {
+                        cursor: pointer;
+                        box-shadow: 0px 0px 6px $add-card-extra-select;
+                    }
+
+                    .member-img {
+                        margin: 6px;
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 100%;
+                    }
+
+                    .member-img:hover {
+                        cursor: pointer;
+                        box-shadow: 0px 0px 6px $add-card-extra-select;
+                    }
+
+                    .active-item {
+                        box-shadow: 0px 0px 8px $add-card-extra-select;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.new-card-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    .confirm-new-card {
+        background-color: $add-card-confirm;
+        border: none;
+        outline: none;
+        margin-right: 14px;
+        text-transform: uppercase;
+        border-radius: 4px;
+        padding: 10px 14px;
+        font-size: 14px;
+        color: $white;
+    }
+
+    .cancel-new-card {
+        background-color: $transparent;
+        border: none;
+        outline: none;
+        text-transform: uppercase;
+        border-radius: 10000;
+        padding: 0px 5px;
+        font-size: 30px;
+        color: $add-card-btn-text;
+    }
+
+    .confirm-new-card:hover {
+        cursor: pointer;
+        background-color: darken($add-card-confirm, $amount: 4);
+    }
+
+    .cancel-new-card:hover {
+        cursor: pointer;
+        color: darken($add-card-btn-text, $amount: 4);
+    }
+}
