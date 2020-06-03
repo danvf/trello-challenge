@@ -49,7 +49,11 @@ class AddColumnButton extends Component {
         if (newColumnFormOpen) {
             return (
                 <div ref={this.columnTitleForm}>
-                    <NewColumn cancel={this.closeColumnForm} />
+                    <NewColumn
+                        title=""
+                        cards={[]}
+                        cancel={this.closeColumnForm}
+                    />
                 </div>
             );
         } else {

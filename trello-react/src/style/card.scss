@@ -12,6 +12,23 @@
     border-radius: 3px;
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
 
+    .edit-card-btn {
+        display: none;
+        position: absolute;
+        transform: translate(290px, -4px);
+        cursor: pointer;
+        border: none;
+        background: $transparent;
+        outline: none;
+        height: 32px;
+        width: 30px;
+
+        i {
+            font-size: 14px;
+            color: $card-edit-btn;
+        }
+    }
+
     .card-text {
         @extend %card-font;
     }
@@ -39,5 +56,21 @@
             border-radius: 2px;
             outline: none;
         }
+    }
+}
+
+.card-box:hover {
+    cursor: grab;
+
+    .edit-card-btn {
+        display: inline-block;
+    }
+}
+
+.card-box:active {
+    cursor: grabbing;
+
+    .edit-card-btn {
+        display: none;
     }
 }

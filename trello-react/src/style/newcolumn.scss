@@ -2,19 +2,57 @@
 @import "fonts";
 
 .new-column-header {
-    width: 100%;
-    height: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    background: $column-header;
+    vertical-align: middle;
+    height: 60px;
+    width: 380px;
+    margin-right: 10px;
 
-    .new-column-text {
+    .new-column-title-box {
+        margin-left: 12px;
         width: 100%;
-        background-color: $transparent;
-        border: none;
-        outline: none;
-        resize: none;
-        overflow: visible;
         @extend %column-font;
+
+        .new-column-title {
+            padding: 0px;
+            width: 100%;
+            background-color: $transparent;
+            border: none;
+            outline: none;
+            resize: none;
+            overflow: visible;
+            @extend %column-font;
+        }
+
+        .new-column-title::placeholder {
+            color: $rename-column-placeholder;
+        }
+    }
+
+    .rename-column-btn {
+        cursor: pointer;
+        border: none;
+        background: $column-header;
+        outline: none;
+        height: 32px;
+        width: 30px;
+        margin-right: 4px;
+
+        .confirm:hover {
+            color: $rename-column-confirm;
+        }
+
+        .cancel:hover {
+            color: $rename-column-cancel;
+        }
+
+        i {
+            font-size: 20px;
+            color: $column-button;
+        }
     }
 }
 

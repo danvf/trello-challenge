@@ -5,6 +5,9 @@ class Card extends React.Component {
     render() {
         return (
             <div className="card-box">
+                <button className="edit-card-btn">
+                    <i class="fas fa-pen"></i>
+                </button>
                 <p className="card-text"> {this.props.text} </p>
                 <div className="card-footer">
                     {this.props.extras}

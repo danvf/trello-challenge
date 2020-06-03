@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import Column from "./Column";
 import { connect } from "react-redux";
-import { addColumn } from "../actions";
+import { addColumn, renameColumn } from "../actions";
 import "../style/newcolumn.scss";
-
-import TextareaAutosize from "react-autosize-textarea";
 
 class NewColumn extends Component {
     constructor(props) {
@@ -22,7 +19,7 @@ class NewColumn extends Component {
     };
 
     handleAddColumn = () => {
-        const { dispatch } = this.props;
+        const { dispatch, cancel } = this.props;
         const { newColumnTitle } = this.state;
 
         if (newColumnTitle) {
@@ -31,46 +28,62 @@ class NewColumn extends Component {
 
         this.setState({
             newColumnTitle: "",
-            newColumnFormOpen: false,
         });
 
-        this.props.cancel();
+        cancel();
+
+        return;
+    };
+
+    handleRenameColumn = () => {
+        const { dispatch, cancel, columnId } = this.props;
+        const { newColumnTitle } = this.state;
+
+        if (newColumnTitle) {
+            dispatch(renameColumn(columnId, newColumnTitle));
+        }
+
+        this.setState({
+            newColumnTitle: "",
+        });
+
+        cancel();
 
         return;
     };
 
     render() {
-        const { cancel } = this.props;
+        const { currentTitle, rename, cancel } = this.props;
         const { newColumnTitle } = this.state;
 
         return (
-            <div>
-                <Column
-                    title={
-                        <div className="new-column-header">
-                            <TextareaAutosize
-                                autoFocus
-                                placeholder="Insira o título da coluna..."
-                                className="new-column-text"
-                                value={newColumnTitle}
-                                onChange={this.handleTextChange}
-                            />
-                        </div>
+            <div className="new-column-header">
+                <span className="new-column-title-box">
+                    <input
+                        autoFocus
+                        type="text"
+                        placeholder={
+                            rename
+                                ? currentTitle
+                                : "Insira o título da coluna..."
+                        }
+                        className="new-column-title"
+                        maxLength="30"
+                        value={newColumnTitle}
+                        onChange={this.handleTextChange}
+                    />
+                </span>
+                <button
+                    className="rename-column-btn"
+                    onClick={
+                        rename ? this.handleRenameColumn : this.handleAddColumn
                     }
-                    cards={[]}
-                    inactivateOptions={true}
-                />
-                <div className="new-column-actions">
-                    <button
-                        onClick={this.handleAddColumn}
-                        className="confirm-new-column"
-                    >
-                        Adicionar
-                    </button>
-                    <button onClick={cancel} className="cancel-new-column">
-                        <i className="fas fa-times"></i>
-                    </button>
-                </div>
+                >
+                    <i className="confirm fas fa-check"></i>
+                </button>
+                <button className="drop-btn" onClick={cancel}>
+                    <i className="cancel fas fa-times"></i>
+                </button>
             </div>
         );
     }

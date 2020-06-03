@@ -4,13 +4,14 @@ import AddCardButton from "./AddCardButton";
 import "../style/column.scss";
 import { connect } from "react-redux";
 import { removeColumn } from "../actions";
+import NewColumn from "./NewColumn";
 
 class Column extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             dropdownOpen: false,
-            firstColumn: this.props.id === 1,
+            rename: false,
         };
     }
 
@@ -34,9 +35,9 @@ class Column extends React.Component {
         }
     };
 
-    dropdownClick() {
+    dropdownClick = () => {
         this.setState({ dropdownOpen: !this.state.dropdownOpen });
-    }
+    };
 
     handleRemoveColumn = () => {
         const { dispatch, id } = this.props;
@@ -44,47 +45,66 @@ class Column extends React.Component {
         return;
     };
 
+    openRename = () => {
+        this.setState({ rename: true });
+    };
+
+    closeRename = () => {
+        this.setState({ rename: false, dropdownOpen: false });
+    };
+
     render() {
-        const { cards } = this.props;
+        const { id, title, cards } = this.props;
+        const { rename, dropdownOpen } = this.state;
 
         return (
-            <div className="column-box">
-                <div className="column-header">
-                    <span className="column-title">{this.props.title}</span>
-                    <div ref={this.container}>
-                        {this.props.newCol === false && (
-                            <button
-                                className="drop-btn"
-                                onClick={() => this.dropdownClick()}
-                            >
-                                <i className="fas fa-ellipsis-v"> </i>
-                            </button>
-                        )}
-                        {this.state.dropdownOpen && (
-                            <div className="drop-btn-content">
-                                <li> Renomear </li>
-                                <hr />
-                                <li onClick={this.handleRemoveColumn}>
-                                    {" "}
-                                    Excluir{" "}
-                                </li>
-                            </div>
-                        )}
-                    </div>
-                </div>
-                <div className="column-body">
-                    {cards.map((card) => (
-                        <Card
-                            key={card.id}
-                            id={card.id}
-                            text={card.title}
-                            tags={card.tags}
-                            members={card.members}
+            <div>
+                <div className="column-box">
+                    {rename ? (
+                        <NewColumn
+                            columnId={id}
+                            currentTitle={title}
+                            rename={true}
+                            cancel={this.closeRename}
                         />
-                    ))}
-                    {this.props.newCol === false && (
-                        <AddCardButton columnID={this.props.id} />
+                    ) : (
+                        <div className="column-header">
+                            <span className="column-title">{title}</span>
+                            <div ref={this.container}>
+                                <button
+                                    className="drop-btn"
+                                    onClick={this.dropdownClick}
+                                >
+                                    <i className="fas fa-ellipsis-v"> </i>
+                                </button>
+                                {dropdownOpen && (
+                                    <div className="drop-btn-content">
+                                        <li onClick={this.openRename}>
+                                            {" "}
+                                            Renomear{" "}
+                                        </li>
+                                        <hr />
+                                        <li onClick={this.handleRemoveColumn}>
+                                            {" "}
+                                            Excluir{" "}
+                                        </li>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     )}
+                    <div className="column-body">
+                        {cards.map((card) => (
+                            <Card
+                                key={card.id}
+                                id={card.id}
+                                text={card.title}
+                                tags={card.tags}
+                                members={card.members}
+                            />
+                        ))}
+                        <AddCardButton columnID={this.props.id} />
+                    </div>
                 </div>
             </div>
         );

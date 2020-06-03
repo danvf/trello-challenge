@@ -27,8 +27,6 @@ class AddCardButton extends Component {
         ) {
             this.setState({
                 newCardFormOpen: false,
-                selectPeopleOpen: false,
-                selectTagsOpen: false,
             });
         }
     };
@@ -53,6 +51,9 @@ class AddCardButton extends Component {
                 <div ref={this.newCardForm}>
                     <NewCard
                         columnID={this.props.columnID}
+                        newCardText=""
+                        newCardTags={[]}
+                        newCardMembers={[]}
                         cancel={this.closeCardForm}
                     />
                 </div>

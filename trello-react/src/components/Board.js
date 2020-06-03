@@ -19,7 +19,6 @@ class Board extends React.Component {
                             id={column.id}
                             title={column.title}
                             cards={column.cards}
-                            newCol={false}
                         />
                     ))}
                     <AddColumnButton />

@@ -11,9 +11,9 @@ class NewCard extends Component {
         this.state = {
             selectTagsOpen: false,
             selectPeopleOpen: false,
-            newCardText: "",
-            newCardTags: [],
-            newCardMembers: [],
+            newCardText: props.newCardText,
+            newCardTags: props.newCardTags,
+            newCardMembers: props.newCardMembers,
         };
     }
 
