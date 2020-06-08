@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import TextareaAutosize from "react-autosize-textarea";
-import { addCard } from "../actions";
+import { addCard, editCard } from "../actions";
 import { connect } from "react-redux";
 import "../style/newcard.scss";
 
@@ -11,9 +11,9 @@ class NewCard extends Component {
         this.state = {
             selectTagsOpen: false,
             selectPeopleOpen: false,
-            newCardText: props.newCardText,
-            newCardTags: props.newCardTags,
-            newCardMembers: props.newCardMembers,
+            newCardText: props.text !== undefined ? props.text : "",
+            newCardTags: props.tags !== undefined ? props.tags : "",
+            newCardMembers: props.members !== undefined ? props.members : "",
         };
     }
 
@@ -54,23 +54,36 @@ class NewCard extends Component {
     };
 
     handleAddCard = () => {
-        const { dispatch, columnID } = this.props;
+        const { dispatch, columnId, cancel } = this.props;
+        const { newCardText, newCardTags, newCardMembers } = this.state;
+        if (newCardText) {
+            dispatch(
+                addCard(columnId, newCardText, newCardTags, newCardMembers)
+            );
+        }
+
+        cancel();
+
+        return;
+    };
+
+    handleEditCard = () => {
+        const { dispatch, columnId, cardId, cancel } = this.props;
         const { newCardText, newCardTags, newCardMembers } = this.state;
 
         if (newCardText) {
             dispatch(
-                addCard(columnID, newCardText, newCardTags, newCardMembers)
+                editCard(
+                    columnId,
+                    cardId,
+                    newCardText,
+                    newCardTags,
+                    newCardMembers
+                )
             );
         }
 
-        this.setState({
-            newCardText: "",
-            newCardMembers: [],
-            newCardTags: [],
-            newCardFormOpen: false,
-        });
-
-        this.props.cancel();
+        cancel();
 
         return;
     };
@@ -121,7 +134,7 @@ class NewCard extends Component {
     };
 
     render() {
-        const { people, tags, cancel } = this.props;
+        const { edit, text, people, tags, cancel } = this.props;
         const {
             newCardText,
             newCardTags,
@@ -135,7 +148,9 @@ class NewCard extends Component {
                 <div className="new-card-box">
                     <TextareaAutosize
                         autoFocus
-                        placeholder="Insira aqui o texto do cartão..."
+                        placeholder={
+                            edit ? text : "Insira aqui o texto do cartão..."
+                        }
                         className="new-card-text"
                         value={newCardText}
                         onChange={this.handleTextChange}
@@ -231,10 +246,12 @@ class NewCard extends Component {
                 </div>
                 <div className="new-card-actions">
                     <button
-                        onClick={this.handleAddCard}
+                        onClick={
+                            edit ? this.handleEditCard : this.handleAddCard
+                        }
                         className="confirm-new-card"
                     >
-                        Adicionar
+                        <i className="fas fa-check"></i>
                     </button>
                     <button onClick={cancel} className="cancel-new-card">
                         <i className="fas fa-times"></i>

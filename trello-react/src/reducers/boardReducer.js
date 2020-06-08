@@ -14,13 +14,25 @@ function findWithAttr(array, attr, value) {
 }
 
 const boardReducer = (state = data.boards[0], action) => {
-    let newCard, newColumn, newColumns, newBoard;
+    let removeIndex,
+        editCardId,
+        editCardIndex,
+        editColumnId,
+        editColumnIndex,
+        removeCardId,
+        removeCardIndex,
+        removeColumnId,
+        removeColumnIndex,
+        newCard,
+        newColumn,
+        newCards,
+        newColumns,
+        newBoard;
 
     switch (action.type) {
         case CONSTANTS.ADD_CARD:
             newCard = {
                 id: cardID,
-                parentColumnId: action.payload.parentColumnId,
                 title: action.payload.text,
                 tags: action.payload.tags,
                 members: action.payload.members,
@@ -29,7 +41,7 @@ const boardReducer = (state = data.boards[0], action) => {
             cardID += 1;
 
             newColumns = state.columns.map((column) => {
-                if (column.id === newCard.parentColumnId) {
+                if (column.id === action.payload.parentColumnId) {
                     return {
                         ...column,
                         cards: [...column.cards, newCard],
@@ -43,6 +55,53 @@ const boardReducer = (state = data.boards[0], action) => {
                 ...state,
                 columns: newColumns,
             };
+
+            return newBoard;
+
+        case CONSTANTS.REMOVE_CARD:
+            removeColumnId = action.payload.parentColumnId;
+            removeColumnIndex = findWithAttr(
+                state.columns,
+                "id",
+                removeColumnId
+            );
+            removeCardId = action.payload.cardId;
+            removeCardIndex = findWithAttr(
+                state.columns[removeColumnIndex].cards,
+                "id",
+                removeCardId
+            );
+
+            newCards = [...state.columns[removeColumnIndex].cards];
+            newCards.splice(removeCardIndex, 1);
+
+            newBoard = { ...state };
+            newBoard.columns[removeColumnIndex].cards = newCards;
+
+            return newBoard;
+
+        case CONSTANTS.EDIT_CARD:
+            newCard = {
+                id: action.payload.cardId,
+                title: action.payload.newText,
+                tags: action.payload.newTags,
+                members: action.payload.newMembers,
+            };
+
+            editColumnId = action.payload.parentColumnId;
+            editColumnIndex = findWithAttr(state.columns, "id", editColumnId);
+            editCardId = action.payload.cardId;
+            editCardIndex = findWithAttr(
+                state.columns[editColumnIndex].cards,
+                "id",
+                editCardId
+            );
+
+            newCards = [...state.columns[editColumnIndex].cards];
+            newCards[editCardIndex] = newCard;
+
+            newBoard = { ...state };
+            newBoard.columns[editColumnIndex].cards = newCards;
 
             return newBoard;
 
@@ -82,9 +141,11 @@ const boardReducer = (state = data.boards[0], action) => {
             return newBoard;
 
         case CONSTANTS.REMOVE_COLUMN:
-            let removeColumnId = action.payload.columnId;
-            let removeIndex = findWithAttr(state.columns, "id", removeColumnId);
-            newColumns = state.columns;
+            removeColumnId = action.payload.columnId;
+            removeIndex = findWithAttr(state.columns, "id", removeColumnId);
+            newColumns = [...state.columns];
+            console.log("newColumns: ");
+            console.log(newColumns);
             newColumns.splice(removeIndex, 1);
             newBoard = {
                 ...state,

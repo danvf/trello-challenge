@@ -98,12 +98,13 @@ class Column extends React.Component {
                             <Card
                                 key={card.id}
                                 id={card.id}
+                                columnId={this.props.id}
                                 text={card.title}
                                 tags={card.tags}
                                 members={card.members}
                             />
                         ))}
-                        <AddCardButton columnID={this.props.id} />
+                        <AddCardButton columnId={this.props.id} />
                     </div>
                 </div>
             </div>

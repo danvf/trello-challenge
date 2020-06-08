@@ -81,7 +81,7 @@ class NewColumn extends Component {
                 >
                     <i className="confirm fas fa-check"></i>
                 </button>
-                <button className="drop-btn" onClick={cancel}>
+                <button className="rename-column-btn" onClick={cancel}>
                     <i className="cancel fas fa-times"></i>
                 </button>
             </div>

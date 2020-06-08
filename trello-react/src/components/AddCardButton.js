@@ -44,16 +44,18 @@ class AddCardButton extends Component {
     };
 
     renderAddButton = () => {
+        const { columnId } = this.props;
         const { newCardFormOpen } = this.state;
 
         if (newCardFormOpen) {
             return (
                 <div ref={this.newCardForm}>
                     <NewCard
-                        columnID={this.props.columnID}
-                        newCardText=""
-                        newCardTags={[]}
-                        newCardMembers={[]}
+                        edit={false}
+                        columnId={columnId}
+                        text=""
+                        tags={[]}
+                        members={[]}
                         cancel={this.closeCardForm}
                     />
                 </div>
