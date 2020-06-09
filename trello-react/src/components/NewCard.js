@@ -18,6 +18,7 @@ class NewCard extends Component {
         };
     }
 
+    newCardDiv = React.createRef();
     cardPeopleForm = React.createRef();
     cardTagsForm = React.createRef();
 
@@ -29,6 +30,13 @@ class NewCard extends Component {
     }
 
     handleClickOutside = (event) => {
+        if (
+            this.newCardDiv.current &&
+            !this.newCardDiv.current.contains(event.target)
+        ) {
+            this.props.cancel();
+        }
+
         if (
             this.cardPeopleForm.current &&
             !this.cardPeopleForm.current.contains(event.target)
@@ -145,7 +153,7 @@ class NewCard extends Component {
         } = this.state;
 
         return (
-            <div>
+            <div ref={this.newCardDiv}>
                 <div className="new-card-box">
                     <TextareaAutosize
                         autoFocus
