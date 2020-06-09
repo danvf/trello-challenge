@@ -11,9 +11,10 @@ class NewCard extends Component {
         this.state = {
             selectTagsOpen: false,
             selectPeopleOpen: false,
-            newCardText: props.text !== undefined ? props.text : "",
-            newCardTags: props.tags !== undefined ? props.tags : "",
-            newCardMembers: props.members !== undefined ? props.members : "",
+            newCardText: props.cardText !== undefined ? props.cardText : "",
+            newCardTags: props.cardTags !== undefined ? props.cardTags : "",
+            newCardMembers:
+                props.cardMembers !== undefined ? props.cardMembers : "",
         };
     }
 
@@ -134,7 +135,7 @@ class NewCard extends Component {
     };
 
     render() {
-        const { edit, text, people, tags, cancel } = this.props;
+        const { edit, cardText, people, tags, cancel } = this.props;
         const {
             newCardText,
             newCardTags,
@@ -149,7 +150,7 @@ class NewCard extends Component {
                     <TextareaAutosize
                         autoFocus
                         placeholder={
-                            edit ? text : "Insira aqui o texto do cartão..."
+                            edit ? cardText : "Insira aqui o texto do cartão..."
                         }
                         className="new-card-text"
                         value={newCardText}

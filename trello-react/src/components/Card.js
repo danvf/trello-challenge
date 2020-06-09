@@ -31,7 +31,7 @@ class Card extends React.Component {
     };
 
     render() {
-        const { id, columnId, text, tags, members } = this.props;
+        const { id, columnId, cardText, cardTags, cardMembers } = this.props;
         const { edit } = this.state;
 
         return (
@@ -41,9 +41,9 @@ class Card extends React.Component {
                         edit={true}
                         columnId={columnId}
                         cardId={id}
-                        text={text}
-                        tags={tags}
-                        members={members}
+                        cardText={cardText}
+                        cardTags={cardTags}
+                        cardMembers={cardMembers}
                         cancel={this.closeEdit}
                     />
                 ) : (
@@ -62,12 +62,12 @@ class Card extends React.Component {
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
-                        <p className="card-text"> {this.props.text} </p>
+                        <p className="card-text"> {this.props.cardText} </p>
                         <div className="card-footer">
                             {this.props.extras}
                             <div className="card-tags">
-                                {typeof this.props.tags !== "undefined" &&
-                                    this.props.tags.map((tag) => (
+                                {typeof cardTags !== "undefined" &&
+                                    cardTags.map((tag) => (
                                         <button className="card-tag">
                                             {" "}
                                             {tag}{" "}
@@ -75,8 +75,8 @@ class Card extends React.Component {
                                     ))}
                             </div>
                             <div className="card-members">
-                                {typeof this.props.members !== "undefined" &&
-                                    this.props.members.map((member) => (
+                                {typeof cardMembers !== "undefined" &&
+                                    cardMembers.map((member) => (
                                         <img
                                             className="member-img"
                                             alt="card member"

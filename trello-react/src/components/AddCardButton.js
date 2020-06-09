@@ -53,9 +53,9 @@ class AddCardButton extends Component {
                     <NewCard
                         edit={false}
                         columnId={columnId}
-                        text=""
-                        tags={[]}
-                        members={[]}
+                        cardText=""
+                        cardTags={[]}
+                        cardMembers={[]}
                         cancel={this.closeCardForm}
                     />
                 </div>

@@ -53,6 +53,10 @@ class Column extends React.Component {
         this.setState({ rename: false, dropdownOpen: false });
     };
 
+    isUndefined = (value) => {
+        return value === undefined;
+    };
+
     render() {
         const { id, title, cards } = this.props;
         const { rename, dropdownOpen } = this.state;
@@ -99,9 +103,17 @@ class Column extends React.Component {
                                 key={card.id}
                                 id={card.id}
                                 columnId={this.props.id}
-                                text={card.title}
-                                tags={card.tags}
-                                members={card.members}
+                                cardText={
+                                    card.title !== undefined ? card.title : ""
+                                }
+                                cardTags={
+                                    card.tags !== undefined ? card.tags : []
+                                }
+                                cardMembers={
+                                    card.members !== undefined
+                                        ? card.members
+                                        : []
+                                }
                             />
                         ))}
                         <AddCardButton columnId={this.props.id} />
