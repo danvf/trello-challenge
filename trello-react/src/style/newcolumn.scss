@@ -7,8 +7,8 @@
     align-items: center;
     background: $column-header;
     vertical-align: middle;
-    height: 60px;
-    width: 380px;
+    height: 50px;
+    width: 300px;
     margin-right: 10px;
 
     .new-column-title-box {
@@ -37,61 +37,27 @@
         border: none;
         background: $column-header;
         outline: none;
-        height: 32px;
-        width: 30px;
+        height: 25px;
+        width: 25px;
         margin-right: 4px;
 
         .confirm:hover {
-            color: $rename-column-confirm;
+            cursor: pointer;
+            color: darken($column-button, $amount: 4);
+        }
+
+        .cancel {
+            margin-right: 20px;
         }
 
         .cancel:hover {
-            color: $rename-column-cancel;
+            cursor: pointer;
+            color: darken($column-button, $amount: 4);
         }
 
         i {
-            font-size: 20px;
+            font-size: 16px;
             color: $column-button;
         }
-    }
-}
-
-.new-column-actions {
-    display: flex;
-    width: 380px;
-    margin-top: 14px;
-    justify-content: flex-end;
-
-    .confirm-new-column {
-        background-color: $add-card-confirm;
-        border: none;
-        outline: none;
-        margin-right: 20px;
-        text-transform: uppercase;
-        border-radius: 4px;
-        padding: 10px 14px;
-        font-size: 14px;
-        color: $white;
-    }
-
-    .cancel-new-column {
-        background-color: $transparent;
-        border: none;
-        outline: none;
-        text-transform: uppercase;
-        border-radius: 10000;
-        padding: 0px 5px;
-        font-size: 30px;
-        color: $add-card-btn-text;
-    }
-
-    .confirm-new-column:hover {
-        cursor: pointer;
-        background-color: darken($add-card-confirm, $amount: 4);
-    }
-
-    .cancel-new-column:hover {
-        cursor: pointer;
-        color: darken($add-card-btn-text, $amount: 4);
     }
 }

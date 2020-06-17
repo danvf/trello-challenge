@@ -68,7 +68,7 @@ class NewColumn extends Component {
                                 : "Insira o título da coluna..."
                         }
                         className="new-column-title"
-                        maxLength="30"
+                        maxLength="25"
                         value={newColumnTitle}
                         onChange={this.handleTextChange}
                     />

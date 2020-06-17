@@ -12,19 +12,19 @@ $light: 300;
 
 %board-font {
     color: $board-title;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: $medium;
 }
 
 %column-font {
     text-transform: uppercase;
     color: $column-title;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: $regular;
 }
 
 %card-font {
-    font-size: 14px;
+    font-size: 11px;
     font-weight: $regular;
     color: $card-text;
     margin: 5px 0px;
@@ -32,6 +32,6 @@ $light: 300;
 
 %add-card-btn-font {
     text-transform: uppercase;
-    font-size: 15px;
+    font-size: 13px;
     color: $add-card-btn-text;
 }

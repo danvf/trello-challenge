@@ -51,13 +51,13 @@ class Card extends React.Component {
                         <div className="card-btn-box">
                             <button
                                 onClick={this.openEdit}
-                                className="card-btn edit-card-btn"
+                                className="card-btn"
                             >
                                 <i className="fas fa-pen"></i>
                             </button>
                             <button
                                 onClick={this.handleRemoveCard}
-                                className="card-btn remove-card-btn"
+                                className="card-btn"
                             >
                                 <i class="fas fa-trash-alt"></i>
                             </button>
@@ -65,7 +65,7 @@ class Card extends React.Component {
                         <p className="card-text"> {this.props.cardText} </p>
                         <div className="card-footer">
                             {this.props.extras}
-                            <div className="card-tags">
+                            <div className="card-extra-box">
                                 {typeof cardTags !== "undefined" &&
                                     cardTags.map((tag) => (
                                         <button className="card-tag">
@@ -74,7 +74,7 @@ class Card extends React.Component {
                                         </button>
                                     ))}
                             </div>
-                            <div className="card-members">
+                            <div className="card-extra-box">
                                 {typeof cardMembers !== "undefined" &&
                                     cardMembers.map((member) => (
                                         <img

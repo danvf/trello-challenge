@@ -258,11 +258,11 @@ class NewCard extends Component {
                         onClick={
                             edit ? this.handleEditCard : this.handleAddCard
                         }
-                        className="confirm-new-card"
+                        className="action-new-card"
                     >
                         <i className="fas fa-check"></i>
                     </button>
-                    <button onClick={cancel} className="cancel-new-card">
+                    <button onClick={cancel} className="action-new-card">
                         <i className="fas fa-times"></i>
                     </button>
                 </div>

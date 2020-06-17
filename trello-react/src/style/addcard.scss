@@ -11,11 +11,15 @@
     @extend %add-card-btn-font;
 
     i {
-        font-size: 14px;
+        font-size: 12px;
         margin-right: 4px;
     }
 }
 
 .new-card-btn:hover {
     cursor: pointer;
+}
+
+.new-card-btn:focus {
+    outline: none;
 }
