@@ -18,6 +18,24 @@ class NewColumn extends Component {
         });
     };
 
+    newColumnDiv = React.createRef();
+
+    componentDidMount() {
+        document.addEventListener("mousedown", this.handleClickOutside);
+    }
+    componentWillUnmount() {
+        document.removeEventListener("mousedown", this.handleClickOutside);
+    }
+
+    handleClickOutside = (event) => {
+        if (
+            this.newColumnDiv.current &&
+            !this.newColumnDiv.current.contains(event.target)
+        ) {
+            this.props.cancel();
+        }
+    };
+
     handleAddColumn = () => {
         const { dispatch, cancel } = this.props;
         const { newColumnTitle } = this.state;
@@ -57,7 +75,7 @@ class NewColumn extends Component {
         const { newColumnTitle } = this.state;
 
         return (
-            <div className="new-column-header">
+            <div ref={this.newColumnDiv} className="new-column-header">
                 <span className="new-column-title-box">
                     <input
                         autoFocus
