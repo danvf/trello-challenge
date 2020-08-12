@@ -27,12 +27,12 @@
                                 {
                                     "id": 1,
                                     "name": "Alex Pessoa",
-                                    "photoURL": "https://media-exp1.licdn.com/dms/image/C5603AQFiSGlUHLv7og/profile-displayphoto-shrink_800_800/0?e=1595462400&v=beta&t=r0A8HWiP93weagDd0_OcYSbCS5x-NjvHZeNmLj0cEto"
+                                    "photoURL": "https://cdn.iconscout.com/icon/free/png-512/avatar-380-456332.png"
                                 },
                                 {
                                     "id": 2,
                                     "name": "Marcos Martins",
-                                    "photoURL": "https://media-exp1.licdn.com/dms/image/C4D03AQEd554jxrtm6w/profile-displayphoto-shrink_800_800/0?e=1595462400&v=beta&t=lJbth4ICq68D7MJCShQqM7uhk6T07rXZXkFu0KHpF-g"
+                                    "photoURL": "https://img2.gratispng.com/20180319/pde/kisspng-computer-icons-icon-design-avatar-flat-face-icon-5ab06e33bee962.122118601521511987782.jpg"
                                 }
                             ]
                         }
@@ -50,22 +50,22 @@
         {
             "id": 1,
             "name": "Alex Pessoa",
-            "photoURL": "https://media-exp1.licdn.com/dms/image/C5603AQFiSGlUHLv7og/profile-displayphoto-shrink_800_800/0?e=1595462400&v=beta&t=r0A8HWiP93weagDd0_OcYSbCS5x-NjvHZeNmLj0cEto"
+            "photoURL": "https://cdn.iconscout.com/icon/free/png-512/avatar-380-456332.png"
         },
         {
             "id": 2,
             "name": "Marcos Martins",
-            "photoURL": "https://media-exp1.licdn.com/dms/image/C4D03AQEd554jxrtm6w/profile-displayphoto-shrink_800_800/0?e=1595462400&v=beta&t=lJbth4ICq68D7MJCShQqM7uhk6T07rXZXkFu0KHpF-g"
+            "photoURL": "https://img2.gratispng.com/20180319/pde/kisspng-computer-icons-icon-design-avatar-flat-face-icon-5ab06e33bee962.122118601521511987782.jpg"
         },
         {
             "id": 3,
             "name": "Guilherme Melo",
-            "photoURL": "https://media-exp1.licdn.com/dms/image/C4E03AQEp1jkmRPh0Ow/profile-displayphoto-shrink_800_800/0?e=1595462400&v=beta&t=mB63IjbRyyO94phfuN_oLpMgYF07RuDVWi0IHMUIJpY"
+            "photoURL": "https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png"
         },
         {
             "id": 4,
             "name": "Marcio Mendes",
-            "photoURL": "https://media-exp1.licdn.com/dms/image/C5603AQFkkkE94EHoEA/profile-displayphoto-shrink_800_800/0?e=1595462400&v=beta&t=P4jR7OsDf-8g2_DOphnffgcm-ADSMV4me2590xccAMg"
+            "photoURL": "https://www.fateo.edu.br/wp-content/uploads/2018/09/professor-homem.png"
         }
     ],
     "tags": ["Design", "Front-End", "Back-End", "RH"]

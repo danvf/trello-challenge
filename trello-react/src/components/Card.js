@@ -59,7 +59,7 @@ class Card extends React.Component {
                                 onClick={this.handleRemoveCard}
                                 className="card-btn"
                             >
-                                <i class="fas fa-trash-alt"></i>
+                                <i className="fas fa-trash-alt"></i>
                             </button>
                         </div>
                         <p className="card-text"> {this.props.cardText} </p>

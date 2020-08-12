@@ -75,7 +75,7 @@
 
                     .card-tag {
                         margin: 6px;
-                        font-size: 9px;
+                        font-size: 10px;
                         background-color: $card-tag-bg;
                         color: $card-tag-text;
                         border: none;
@@ -112,7 +112,6 @@
 .new-card-actions {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: -20px;
 
     .action-new-card {
         background-color: $transparent;

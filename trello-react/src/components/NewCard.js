@@ -13,8 +13,7 @@ class NewCard extends Component {
             selectPeopleOpen: false,
             newCardText: props.cardText !== undefined ? props.cardText : "",
             newCardTags: props.cardTags !== undefined ? props.cardTags : "",
-            newCardMembers:
-                props.cardMembers !== undefined ? props.cardMembers : "",
+            newCardMembers: props.cardMembers,
         };
     }
 
@@ -122,11 +121,22 @@ class NewCard extends Component {
             ? [...this.state.newCardMembers]
             : [...this.state.newCardTags];
 
-        if (itemList.includes(item)) {
-            index = itemList.indexOf(item);
-            itemList.splice(index, 1);
+        if (isMember) {
+            if (this.checkMember(item)) {
+                index = itemList.findIndex(
+                    (member) => member.name === item.name
+                );
+                itemList.splice(index, 1);
+            } else {
+                itemList = [...itemList, item];
+            }
         } else {
-            itemList = [...itemList, item];
+            if (itemList.includes(item)) {
+                index = itemList.indexOf(item);
+                itemList.splice(index, 1);
+            } else {
+                itemList = [...itemList, item];
+            }
         }
 
         if (isMember) {
@@ -141,6 +151,20 @@ class NewCard extends Component {
 
         event.target.classList.toggle("active-item");
     };
+
+    checkMember(member) {
+        let filteredMembers = this.props.cardMembers.filter(
+            (cardMember) => cardMember.name === member.name
+        );
+        if (
+            typeof filteredMembers !== "undefined" &&
+            filteredMembers.length > 0
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     render() {
         const { edit, cardText, people, tags, cancel } = this.props;
@@ -236,7 +260,7 @@ class NewCard extends Component {
                                                     }
                                                     className={
                                                         "member-img" +
-                                                        (newCardMembers.includes(
+                                                        (this.checkMember(
                                                             member
                                                         )
                                                             ? " active-item"
